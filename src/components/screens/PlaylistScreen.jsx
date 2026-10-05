@@ -31,19 +31,19 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
   };
 
   return (
-    <section id="screen-playlist" className="app-screen active w-full h-full relative overflow-y-auto overflow-x-hidden flex flex-col justify-between">
-      <div className="screen-nav-header p-4 sm:p-5 z-20">
+    <section id="screen-playlist" className="app-screen active overflow-y-auto lg:overflow-hidden">
+      <div className="screen-nav-header">
         <button
-          className="btn-back-retro cursor-pointer text-xs sm:text-base px-3 sm:px-6 py-1.5 sm:py-2"
+          className="btn-back-retro cursor-pointer"
           onClick={() => onNavigate('menu')}
         >
           BACK ◀
         </button>
       </div>
 
-      <div className="playlist-stage-exact flex-1 flex flex-col items-center justify-center pt-14 pb-12 sm:py-6 -mt-2 sm:-mt-4">
-        {/* Mobile Header Banner */}
-        <div className="playlist-mobile-header mb-2 text-center sm:hidden z-10">
+      <div className="playlist-stage-exact">
+        {/* Mobile Header Banner (only on mobile) */}
+        <div className="playlist-mobile-header mb-2 text-center lg:hidden z-10">
           <h2 className="font-cursive text-3xl text-white font-bold drop-shadow-[0_0_15px_rgba(0,245,212,0.85)]">
             Our Playlist 🎵
           </h2>
@@ -237,11 +237,11 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
             <div
               className="gold-photo-frame frame-left-bot cursor-pointer"
               title="Frame Memory 2"
-              onClick={() => handleFrameClick(config.photos?.playlistFrame2 || "/assets/portrait_car_night.jpg", "Golden Memory 2")}
+              onClick={() => handleFrameClick(config.photos?.playlistFrame2 || "/assets/portrait_award_mirror.jpg", "Golden Memory 2")}
             >
               <div className="frame-outer-bezel">
                 <div className="frame-inner-mat">
-                  <img src={config.photos?.playlistFrame2 || "/assets/portrait_car_night.jpg"} alt="Golden Frame Photo 2" />
+                  <img src={config.photos?.playlistFrame2 || "/assets/portrait_award_mirror.jpg"} alt="Golden Frame Photo 2" />
                 </div>
               </div>
               <span className="gold-frame-butterfly">🦋</span>
@@ -253,11 +253,11 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
             <div
               className="gold-photo-frame frame-right-baroque cursor-pointer"
               title="Frame Memory 3"
-              onClick={() => handleFrameClick(config.photos?.playlistFrame3 || "/assets/portrait_waterfall.jpg", "Golden Baroque Memory")}
+              onClick={() => handleFrameClick(config.photos?.playlistFrame3 || "/assets/portrait_award_stage.jpg", "Golden Baroque Memory")}
             >
               <div className="frame-outer-bezel ornate-carved">
                 <div className="frame-inner-mat">
-                  <img src={config.photos?.playlistFrame3 || "/assets/portrait_waterfall.jpg"} alt="Golden Frame Photo 3" />
+                  <img src={config.photos?.playlistFrame3 || "/assets/portrait_award_stage.jpg"} alt="Golden Frame Photo 3" />
                 </div>
               </div>
               <span className="gold-frame-butterfly right-b">🦋</span>
@@ -267,7 +267,6 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
         </div>
 
       </div>
-      <div className="h-6" />
     </section>
   );
 }

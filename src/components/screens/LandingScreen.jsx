@@ -156,7 +156,7 @@ export function LandingScreen({ config, onNavigate }) {
             <div className="photostrip-inner">
               <div className="strip-item"><img src={config.photos?.photostrip1 || "/assets/portrait_lift_office.jpg"} alt="Strip 1" /></div>
               <div className="strip-item"><img src={config.photos?.photostrip2 || "/assets/portrait_car_night.jpg"} alt="Strip 2" /></div>
-              <div className="strip-item"><img src={config.photos?.photostrip3 || "/assets/portrait_green_hijab.jpg"} alt="Strip 3" /></div>
+              <div className="strip-item"><img src={config.photos?.photostrip3 || "/assets/portrait_selfie.jpg"} alt="Strip 3" /></div>
             </div>
             <div className="photostrip-butterfly-top">
               <PerchedButterfly3D />

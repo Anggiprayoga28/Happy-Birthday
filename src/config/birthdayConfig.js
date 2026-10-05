@@ -36,20 +36,20 @@ export const CONFIG = {
     polaroid8: "/assets/portrait8.jpg",
     polaroid9: "/assets/portrait9.jpg",
 
-    // Landing Screen Unique Photos (replacing previous duplicates)
+    // Landing Screen Unique Photos (all 100% unique, no duplicates!)
     landingHeart: "/assets/portrait_green_hijab.jpg",
     landingPolaroid: "/assets/portrait_waterfall.jpg",
     photostrip1: "/assets/portrait_lift_office.jpg",
     photostrip2: "/assets/portrait_car_night.jpg",
-    photostrip3: "/assets/portrait_green_hijab.jpg",
+    photostrip3: "/assets/portrait_selfie.jpg",
 
     // Love letter baroque frame (Screen 5)
-    letterFrame: "/assets/portrait2.jpg",
+    letterFrame: "/assets/portrait_pakuwaja.jpg",
 
-    // Playlist screen golden frames (Screen 4, replacing previous duplicates)
+    // Playlist screen golden frames (Screen 4)
     playlistFrame1: "/assets/portrait_denim_ride.jpg",
-    playlistFrame2: "/assets/portrait_car_night.jpg",
-    playlistFrame3: "/assets/portrait_waterfall.jpg",
+    playlistFrame2: "/assets/portrait_award_mirror.jpg",
+    playlistFrame3: "/assets/portrait_award_stage.jpg",
   },
   
   // Captions for Polaroid gallery

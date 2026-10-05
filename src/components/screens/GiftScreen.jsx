@@ -144,7 +144,7 @@ export function GiftScreen({ config, onNavigate, onOpenVoucher }) {
             <div className="gift-baroque-photo-card group-hover:scale-[1.02] transition-transform">
               {/* Photo inside the frame */}
               <img
-                src={config.photos?.letterFrame || "/assets/portrait_green_hijab.jpg"}
+                src={config.photos?.letterFrame || "/assets/portrait_pakuwaja.jpg"}
                 alt="Sweet Portrait"
                 className="frame-portrait-img"
                 id="img-gift-portrait"

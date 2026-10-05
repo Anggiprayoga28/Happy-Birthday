@@ -1870,12 +1870,14 @@ body.theme-ocean-butterfly {
    ======================================================== */
 .playlist-stage-exact {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 55px;
   width: 100%;
   max-width: 1200px;
   height: 85vh;
+  margin: 0 auto;
 }
 
 .ref-player-section {
@@ -3469,6 +3471,48 @@ body:has(#screen-gift.active) .audio-control-container {
 
   .gift-calligraphy-name {
     font-size: 1.95rem !important;
+  }
+}
+
+/* ========================================================
+   DESKTOP SCREEN LAYOUT ENFORCEMENT (> 950px)
+   Guarantees 2-column horizontal layout exactly matching original design
+   ======================================================== */
+@media (min-width: 951px) {
+  #screen-playlist {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .playlist-stage-exact {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 55px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    height: 85vh !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .ref-player-section {
+    flex: 1.25 !important;
+    max-width: 600px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+  }
+
+  .ref-frames-section {
+    flex: 0.95 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    max-width: none !important;
   }
 }
 
