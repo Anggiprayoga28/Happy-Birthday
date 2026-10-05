@@ -27,7 +27,7 @@ export const CONFIG = {
   photos: {
     // Polaroid gallery on table (Screen 2)
     polaroid1: "/assets/portrait1.jpg",
-    polaroid2: "/assets/portrait2.jpg",
+    polaroid2: "/assets/portrait_pakuwaja.jpg",
     polaroid3: "/assets/portrait3.jpg",
     polaroid4: "/assets/portrait4.jpg",
     polaroid5: "/assets/portrait5.jpg",
@@ -44,7 +44,7 @@ export const CONFIG = {
     photostrip3: "/assets/portrait_selfie.jpg",
 
     // Love letter baroque frame (Screen 5)
-    letterFrame: "/assets/portrait_pakuwaja.jpg",
+    letterFrame: "/assets/portrait2.jpg",
 
     // Playlist screen golden frames (Screen 4)
     playlistFrame1: "/assets/portrait_denim_ride.jpg",
@@ -55,7 +55,7 @@ export const CONFIG = {
   // Captions for Polaroid gallery
   moments: [
     { title: "Anggun & Manis", caption: "Senyummu yang selalu bikin hariku teduh dan cerah ✨", photo: "/assets/portrait1.jpg" },
-    { title: "Graduation Day", caption: "Bangga banget lihat kamu berhasil dan bersinar di hari kelulusanmu 🎓🦋", photo: "/assets/portrait2.jpg" },
+    { title: "Puncak Pakuwaja", caption: "Senyum manismu di ketinggian 2421 Mdpl, selalu bikin takjub dan bangga ⛰️🌤️✨", photo: "/assets/portrait_pakuwaja.jpg" },
     { title: "Vintage & Cute", caption: "Pose gemas favoritku, selalu bikin kangen kapan pun 🥰📸", photo: "/assets/portrait3.jpg" },
     { title: "Kebaya & Flowers", caption: "Bunga-bunga kalah cantik sama kamu yang selalu mempesona 🌸💐", photo: "/assets/portrait4.jpg" },
     { title: "Nature Walk", caption: "Semua tempat jadi indah dan tenang kalau lagi jalan bareng kamu 🌲🍃", photo: "/assets/portrait5.jpg" },

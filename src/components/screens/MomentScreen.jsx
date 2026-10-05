@@ -146,10 +146,10 @@ export function MomentScreen({ config, onNavigate, onOpenLightbox }) {
 
             <div
               className="ref-polaroid p-bot-4 cursor-pointer"
-              onClick={() => handlePhotoClick(1, config.photos?.polaroid2 || "/assets/portrait2.jpg")}
+              onClick={() => handlePhotoClick(1, config.photos?.polaroid2 || "/assets/portrait_pakuwaja.jpg")}
             >
               <div className="ref-photo-inner">
-                <img src={config.photos?.polaroid2 || "/assets/portrait2.jpg"} alt="Moment 2" />
+                <img src={config.photos?.polaroid2 || "/assets/portrait_pakuwaja.jpg"} alt="Moment 2" />
               </div>
             </div>
           </div>
