@@ -19,7 +19,7 @@ export const CONFIG = {
   playlist: {
     songTitle: "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign",
     artist: "Mac Miller ft. Ty Dolla $ign",
-    youtubeId: "r3e15Z-wN60", // YouTube Video ID
+    youtubeId: "dviEPYzH3gg", // YouTube Video ID
     mp3Url: "" // optional direct audio link
   },
   

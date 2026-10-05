@@ -1517,7 +1517,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnYtToggle?.addEventListener("click", () => {
     isYtVisible = !isYtVisible;
     if (isYtVisible) {
-      const ytId = appData.playlist?.youtubeId || "r3e15Z-wN60";
+      const ytId = appData.playlist?.youtubeId || "dviEPYzH3gg";
       ytPlayerFrame.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
       visualizerContent.style.display = "none";
       ytEmbedBox.style.display = "block";

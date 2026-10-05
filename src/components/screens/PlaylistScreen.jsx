@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { toggleMusic, subscribeMusicState } from '../../utils/audio';
+import { toggleMusic, subscribeMusicState, stopLofiBackgroundMusic } from '../../utils/audio';
 
 export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showYoutubeEmbed, setShowYoutubeEmbed] = useState(false);
+  const [showYoutubeEmbed, setShowYoutubeEmbed] = useState(true);
   const [progressPct, setProgressPct] = useState(35);
 
   useEffect(() => {
@@ -12,8 +12,13 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
     });
   }, []);
 
-  const youtubeId = config.playlist?.youtubeId || "r3e15Z-wN60";
+  const youtubeId = config.playlist?.youtubeId || "dviEPYzH3gg";
   const songTitle = config.playlist?.songTitle || "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign";
+
+  const handleStartVideo = () => {
+    setShowYoutubeEmbed(true);
+    stopLofiBackgroundMusic();
+  };
 
   const handleFrameClick = (photoSrc, title) => {
     if (onOpenLightbox) {
@@ -55,13 +60,13 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
                 <span className="yt-logo-badge">🎧</span>
                 <div className="yt-text-wrap">
                   <span className="yt-title-main" id="player-song-title">{songTitle}</span>
-                  <span className="yt-uploader-sub">Vibe Music</span>
+                  <span className="yt-uploader-sub">Vibe Music • Official Lyrics</span>
                 </div>
               </div>
               <div className="yt-right-icons">
                 <span
                   id="btn-toggle-player-sound"
-                  title="Sound"
+                  title="Toggle Background Synth"
                   className="cursor-pointer"
                   onClick={toggleMusic}
                 >
@@ -75,7 +80,7 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
             {/* Video Viewport with Loading Spinner / Butterfly */}
             <div className="yt-display-screen" id="video-display-area">
               {!showYoutubeEmbed ? (
-                <div className="yt-spinner-wrap" id="yt-center-spinner">
+                <div className="yt-spinner-wrap cursor-pointer" id="yt-center-spinner" onClick={handleStartVideo}>
                   <div className="yt-spinner-circle" />
                   <div className="yt-center-butterfly">🦋</div>
                 </div>
@@ -83,24 +88,28 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
                 <div className="yt-iframe-container" id="yt-embed-box">
                   <iframe
                     id="yt-player-frame"
-                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1`}
+                    src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&enablejsapi=1&playsinline=1&rel=0`}
                     title="YouTube Video"
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                     className="w-full h-full"
                   />
                 </div>
               )}
 
-              <button
-                className="yt-play-trigger-btn cursor-pointer"
-                id="btn-player-play-pause"
-                title="Play / Pause Musik"
-                onClick={toggleMusic}
-              >
-                <span id="player-play-icon">{isPlaying ? '❚❚' : '▶'}</span>
-              </button>
+              {/* Only show center play overlay button when NOT embedding YouTube video, so it doesn't block iframe controls */}
+              {!showYoutubeEmbed && (
+                <button
+                  className="yt-play-trigger-btn cursor-pointer"
+                  id="btn-player-play-pause"
+                  title="Putar Video YouTube"
+                  onClick={handleStartVideo}
+                >
+                  <span id="player-play-icon">▶</span>
+                </button>
+              )}
             </div>
 
             {/* Bottom Playbar & Controls */}
@@ -121,21 +130,31 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
 
               <div className="yt-controls-row">
                 <div className="yt-left-controls">
-                  <span className="yt-time-text" id="time-display">1:24 / 4:18</span>
+                  <span className="yt-time-text" id="time-display">04:18</span>
                   <button
                     className="yt-small-link-btn cursor-pointer"
                     id="btn-yt-toggle"
-                    onClick={() => setShowYoutubeEmbed(!showYoutubeEmbed)}
+                    onClick={() => {
+                      if (!showYoutubeEmbed) {
+                        stopLofiBackgroundMusic();
+                      }
+                      setShowYoutubeEmbed(!showYoutubeEmbed);
+                    }}
                   >
-                    {showYoutubeEmbed ? '📺 Mode Minimalis' : '🔗 YouTube'}
+                    {showYoutubeEmbed ? '🦋 Mode Visualizer' : '📺 Tampilkan Video'}
                   </button>
                 </div>
                 <div className="yt-right-controls">
-                  <span className="yt-expand-icon">⤢</span>
-                  <div className="yt-brand-badge">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="yt-brand-badge cursor-pointer hover:opacity-80 transition-opacity no-underline flex items-center"
+                    title="Buka langsung di YouTube"
+                  >
                     <span className="yt-red-icon">▶</span>
-                    <span className="yt-brand-text">YouTube</span>
-                  </div>
+                    <span className="yt-brand-text">YouTube ↗</span>
+                  </a>
                 </div>
               </div>
             </div>

@@ -20,7 +20,7 @@ const CONFIG = {
     songTitle: "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign",
     artist: "Mac Miller ft. Ty Dolla $ign",
     // You can replace with YouTube Video ID (e.g. "G_rBuh7gA7A" or custom mp3)
-    youtubeId: "r3e15Z-wN60", // Romance / Lofi instrumental or favorite song
+    youtubeId: "dviEPYzH3gg", // Romance / Lofi instrumental or favorite song
     mp3Url: "" // optional direct audio link
   },
   
