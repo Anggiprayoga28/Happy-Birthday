@@ -12,8 +12,8 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
     });
   }, []);
 
-  const youtubeId = config.playlist?.youtubeId || "dviEPYzH3gg";
-  const songTitle = config.playlist?.songTitle || "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign";
+  const youtubeId = config.playlist?.youtubeId || "1X3BZYOIveM";
+  const songTitle = config.playlist?.songTitle || "Juicy Luicy - Di Balik Layar";
 
   const handleStartVideo = () => {
     setShowYoutubeEmbed(true);
@@ -60,7 +60,7 @@ export function PlaylistScreen({ config, onNavigate, onOpenLightbox }) {
                 <span className="yt-logo-badge">🎧</span>
                 <div className="yt-text-wrap">
                   <span className="yt-title-main" id="player-song-title">{songTitle}</span>
-                  <span className="yt-uploader-sub">Vibe Music • Official Lyrics</span>
+                  <span className="yt-uploader-sub">{config.playlist?.artist || "Juicy Luicy"} • Official Music Video</span>
                 </div>
               </div>
               <div className="yt-right-icons">

@@ -17,10 +17,10 @@ const CONFIG = {
   
   // Playlist settings (Screen 4)
   playlist: {
-    songTitle: "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign",
-    artist: "Mac Miller ft. Ty Dolla $ign",
+    songTitle: "Juicy Luicy - Di Balik Layar",
+    artist: "Juicy Luicy",
     // You can replace with YouTube Video ID (e.g. "G_rBuh7gA7A" or custom mp3)
-    youtubeId: "dviEPYzH3gg", // Romance / Lofi instrumental or favorite song
+    youtubeId: "1X3BZYOIveM", // Romance / Lofi instrumental or favorite song
     mp3Url: "" // optional direct audio link
   },
   

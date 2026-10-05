@@ -17,9 +17,9 @@ export const CONFIG = {
   
   // Playlist settings (Screen 4)
   playlist: {
-    songTitle: "Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign",
-    artist: "Mac Miller ft. Ty Dolla $ign",
-    youtubeId: "dviEPYzH3gg", // YouTube Video ID
+    songTitle: "Juicy Luicy - Di Balik Layar",
+    artist: "Juicy Luicy",
+    youtubeId: "1X3BZYOIveM", // YouTube Video ID
     mp3Url: "" // optional direct audio link
   },
   

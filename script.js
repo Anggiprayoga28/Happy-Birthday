@@ -1517,7 +1517,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnYtToggle?.addEventListener("click", () => {
     isYtVisible = !isYtVisible;
     if (isYtVisible) {
-      const ytId = appData.playlist?.youtubeId || "dviEPYzH3gg";
+      const ytId = appData.playlist?.youtubeId || "1X3BZYOIveM";
       ytPlayerFrame.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
       visualizerContent.style.display = "none";
       ytEmbedBox.style.display = "block";
@@ -2089,7 +2089,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (letterEl) letterEl.textContent = appData.letterText;
 
     const titleEl = document.getElementById("player-song-title");
-    if (titleEl) titleEl.textContent = appData.playlist?.songTitle || "Cinderella - Mac Miller";
+    if (titleEl) titleEl.textContent = appData.playlist?.songTitle || "Juicy Luicy - Di Balik Layar";
   }
 
   syncDOMWithData();
