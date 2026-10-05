@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday Surprise ✨ — Ocean Butterfly</title>
+  <meta name="description" content="A magical ocean blue birthday surprise website adorned with glowing butterflies, music, memories, and love letter.">
+  
+  <!-- Google Fonts: Romantic Script (Montserrat + Dancing Script) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-ocean-butterfly">
+
+  <!-- Reusable High-Fidelity 3D Morpho Butterfly Wing SVG Symbol -->
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <linearGradient id="morphoGradFore" x1="100%" y1="50%" x2="0%" y2="20%">
+        <stop offset="0%" stop-color="#023e8a"/>
+        <stop offset="28%" stop-color="#0077b6"/>
+        <stop offset="62%" stop-color="#00b4d8"/>
+        <stop offset="88%" stop-color="#00f5d4"/>
+        <stop offset="100%" stop-color="#ffffff"/>
+      </linearGradient>
+      <linearGradient id="morphoGradHind" x1="100%" y1="30%" x2="10%" y2="90%">
+        <stop offset="0%" stop-color="#012a4a"/>
+        <stop offset="40%" stop-color="#0077b6"/>
+        <stop offset="82%" stop-color="#00f5d4"/>
+      </linearGradient>
+      <filter id="morphoNeonGlow" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      <g id="svg-morpho-wing">
+        <!-- Forewing -->
+        <path d="M78 52 C75 30 60 6 36 2 C16 -2 2 12 4 32 C6 50 28 66 58 72 C70 74 76 64 78 52 Z" fill="url(#morphoGradFore)" filter="url(#morphoNeonGlow)"/>
+        <!-- Hindwing -->
+        <path d="M76 54 C68 60 42 66 32 78 C20 92 34 100 52 98 C68 96 75 78 76 54 Z" fill="url(#morphoGradHind)" filter="url(#morphoNeonGlow)"/>
+        <!-- Glowing Veins -->
+        <path d="M78 52 C60 40 42 22 36 12 M78 52 C55 36 28 32 10 32 M78 52 C50 48 30 56 16 62 M76 54 C58 68 44 82 38 90 M76 54 C66 74 58 88 52 95" stroke="rgba(255,255,255,0.88)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <!-- Luminescent stardust rim dots -->
+        <circle cx="28" cy="6" r="1.3" fill="#ffffff"/>
+        <circle cx="12" cy="18" r="1.2" fill="#ffffff"/>
+        <circle cx="6" cy="34" r="1.2" fill="#ffffff"/>
+        <circle cx="16" cy="54" r="1.1" fill="#ffffff"/>
+        <circle cx="32" cy="88" r="1.2" fill="#ffffff"/>
+        <circle cx="48" cy="97" r="1.1" fill="#ffffff"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- Swirling Butterfly Cluster Zoom Transition Overlay -->
+  <div id="butterfly-transition-overlay" class="transition-overlay" aria-hidden="true">
+    <div class="swirl-transition-backdrop"></div>
+    <div class="butterfly-cluster-stage" id="butterfly-cluster-stage">
+      <div class="cluster-glow-core"></div>
+      <div class="cluster-rotator" id="cluster-rotator"></div>
+    </div>
+    <div class="transition-light-flash" id="transition-light-flash"></div>
+  </div>
+
+
+  <!-- Floating Audio Controls (Top Left) -->
+  <div class="audio-control-container">
+    <button id="btn-toggle-bgm" class="glass-pill-btn" title="Toggle Musik">
+      <span class="music-icon rotating">🦋</span>
+      <span class="music-text">Music On</span>
+    </button>
+  </div>
+
+  <!-- Background Ambient Canvas: Glowing Stardust Particles -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Global 3D Flying Butterflies & Shimmering Stardust Trail (Soaring Smoothly Across All Screens) -->
+  <canvas id="butterfly-trail-canvas" class="butterfly-trail-canvas" aria-hidden="true"></canvas>
+  <div id="global-flying-butterflies" class="global-butterflies-layer" aria-hidden="true"></div>
+
+  <!-- ==============================================
+       SCREEN 1: LANDING / ENVELOPE SURPRISE
+  =============================================== -->
+  <section id="screen-landing" class="app-screen active">
+    <div class="landing-stage">
+      
+      <!-- Envelope & Letter Composition -->
+      <div class="envelope-composition">
+        
+        <!-- Back Envelope Flap -->
+        <div class="envelope-back"></div>
+
+        <!-- Birthday Card emerging from Envelope -->
+        <div class="birthday-card-letter">
+          <div class="card-inner">
+            <h1 class="card-title font-cursive" id="landing-title-text">Happy Birthday</h1>
+            <p class="card-date font-cursive" id="landing-date-text">28.08.26</p>
+          </div>
+          <div class="card-butterfly-watermark">🦋</div>
+        </div>
+
+        <!-- Envelope Front Pocket -->
+        <div class="envelope-pocket">
+          <div class="envelope-seal">
+            <div class="seal-butterfly-icon perched-bf3d">
+              <div class="bf3d-wing wing-left"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+              <div class="bf3d-body"><div class="bf3d-antennae"></div></div>
+              <div class="bf3d-wing wing-right"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heart Frame Photo with Butterfly Wings (Left) -->
+        <div class="decor-heart-photo float-slow" id="landing-heart-container">
+          <div class="heart-mask">
+            <img src="assets/portrait2.jpg" alt="Heart Memory" id="img-landing-heart">
+          </div>
+          <div class="heart-butterfly-accent perched-bf3d">
+            <div class="bf3d-wing wing-left"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+            <div class="bf3d-body"><div class="bf3d-antennae"></div></div>
+            <div class="bf3d-wing wing-right"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+          </div>
+        </div>
+
+        <!-- Polaroid Photo (Bottom Left) -->
+        <div class="decor-polaroid tilt-left float-medium">
+          <div class="polaroid-frame">
+            <img src="assets/portrait7.jpg" alt="Polaroid Memory" id="img-landing-polaroid">
+            <div class="polaroid-mini-butterfly perched-bf3d">
+              <div class="bf3d-wing wing-left"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+              <div class="bf3d-body"><div class="bf3d-antennae"></div></div>
+              <div class="bf3d-wing wing-right"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photostrip (Right) -->
+        <div class="decor-photostrip tilt-right float-slow">
+          <div class="photostrip-inner">
+            <div class="strip-item"><img src="assets/portrait1.jpg" alt="Strip 1" id="img-strip-1"></div>
+            <div class="strip-item"><img src="assets/portrait4.jpg" alt="Strip 2" id="img-strip-2"></div>
+            <div class="strip-item"><img src="assets/portrait6.jpg" alt="Strip 3" id="img-strip-3"></div>
+          </div>
+          <div class="photostrip-butterfly-top perched-bf3d">
+            <div class="bf3d-wing wing-left"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+            <div class="bf3d-body"><div class="bf3d-antennae"></div></div>
+            <div class="bf3d-wing wing-right"><svg viewBox="0 0 80 102" class="wing-svg"><use href="#svg-morpho-wing"/></svg></div>
+          </div>
+        </div>
+
+        <!-- Glowing Blue Rose Decor Top Right -->
+        <div class="decor-rose-bloom bloom-top-right float-fast">
+          <img src="assets/blue_roses.png?v=12" alt="Ocean Blue Rose Decor" class="rose-img-blend asset-screened">
+        </div>
+
+        <!-- Crystal Sparkles Cluster -->
+        <div class="sakura-cluster">
+          <span class="blossom mini">✨</span>
+          <span class="blossom">💎</span>
+          <span class="blossom mini">✨</span>
+        </div>
+
+      </div>
+
+      <!-- Action Button -->
+      <div class="landing-action-area">
+        <button id="btn-tap-surprise" class="tap-surprise-btn" aria-label="Tap for surprise">
+          <span class="tap-text">TAP FOR SURPRISE</span>
+          <span class="tap-underline"></span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SCREEN 2: CHOOSE THE SURPRISE (ALL BUTTERFLIES)
+  =============================================== -->
+  <section id="screen-menu" class="app-screen">
+    <!-- Back button to return to envelope landing screen -->
+    <div class="screen-nav-header">
+      <button class="btn-back-retro" data-target="screen-landing" title="Kembali ke Amplop">
+        BACK ◀ ENVELOPE
+      </button>
+    </div>
+
+    <div class="menu-stage">
+      
+      <div class="menu-header">
+        <h2 class="menu-title font-cursive">Choose the Surprise</h2>
+      </div>
+
+      <div class="surprise-options-grid">
+        
+        <!-- Option 1: Game -->
+        <div class="surprise-card" id="card-game" tabindex="0" role="button">
+          <div class="item-halo"></div>
+          <div class="item-visual-box butterfly-box">
+            <img src="assets/butterfly_journey.png?v=12" alt="Birthday Game" class="fluttering-item asset-screened">
+            <div class="item-glow-aura"></div>
+          </div>
+          <h3 class="item-label font-cursive">Game</h3>
+          <div class="item-accent-bar"></div>
+        </div>
+
+        <!-- Option 2: Moment -->
+        <div class="surprise-card" id="card-moment" tabindex="0" role="button">
+          <div class="item-halo"></div>
+          <div class="item-visual-box butterfly-box">
+            <img src="assets/butterfly_moment.png?v=12" alt="Moment Clockwork Butterfly" class="fluttering-item asset-screened">
+            <div class="item-glow-aura"></div>
+          </div>
+          <h3 class="item-label font-cursive">Moment</h3>
+          <div class="item-accent-bar"></div>
+        </div>
+
+        <!-- Option 3: Playlist -->
+        <div class="surprise-card" id="card-playlist" tabindex="0" role="button">
+          <div class="item-halo"></div>
+          <div class="item-visual-box butterfly-box">
+            <img src="assets/butterfly_playlist.png?v=12" alt="Playlist Neon Butterfly" class="fluttering-item asset-screened">
+            <div class="item-glow-aura"></div>
+          </div>
+          <h3 class="item-label font-cursive">Playlist</h3>
+          <div class="item-accent-bar"></div>
+        </div>
+
+        <!-- Option 4: Gift -->
+        <div class="surprise-card" id="card-gift" tabindex="0" role="button">
+          <div class="item-halo"></div>
+          <div class="item-visual-box butterfly-box">
+            <img src="assets/butterfly_gift.png?v=12" alt="Gift Ribbon Butterfly" class="fluttering-item floating-gift asset-screened">
+            <div class="item-glow-aura"></div>
+          </div>
+          <h3 class="item-label font-cursive">Gift</h3>
+          <div class="item-accent-bar"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SCREEN 3: BIRTHDAY MINI GAME (FLAPPY BUTTERFLY & BLOW THE CANDLE)
+  =============================================== -->
+  <section id="screen-game" class="app-screen">
+    <!-- Green Retro Back Button matching screenshot -->
+    <div class="screen-nav-header">
+      <button class="btn-back-retro" data-target="screen-menu">
+        BACK ◀
+      </button>
+    </div>
+
+    <div class="birthday-game-stage">
+      <!-- Game Top HUD -->
+      <div class="game-hud-bar">
+        <div class="hud-item hud-score">
+          <span class="hud-label">SKOR</span>
+          <div class="hud-score-display">
+            <span id="game-score-val" class="score-number">0</span>
+            <span class="score-target">/ 15</span>
+          </div>
+        </div>
+
+        <div class="hud-progress-wrap">
+          <div class="hud-progress-meter">
+            <div id="game-progress-fill" class="progress-fill-bar" style="width: 0%;"></div>
+            <span class="progress-glow-dot"></span>
+          </div>
+          <span class="progress-hint-text" id="game-progress-hint">Terbangkan kupu-kupu & kumpulkan kado impian untuk membuka kue ulang tahun ✨</span>
+        </div>
+
+        <div class="hud-item hud-best">
+          <span class="hud-label">BEST SKOR</span>
+          <span id="game-best-val" class="score-number best-val">0</span>
+        </div>
+      </div>
+
+      <!-- Main Game Arena -->
+      <div class="game-interactive-arena flappy-arena" id="game-arena" tabindex="0">
+        <!-- Canvas for Flappy Butterfly -->
+        <canvas id="flappy-canvas"></canvas>
+
+        <!-- Floating Wishes Layer -->
+        <div id="game-wishes-layer" class="game-wishes-layer"></div>
+
+        <!-- Start Game Overlay Prompt -->
+        <div id="game-start-banner" class="game-start-banner">
+          <div class="game-intro-card">
+            <div class="intro-butterfly-icon">🦋 ✨ 🎂</div>
+            <h3 class="intro-title font-cursive">Flappy Ocean Butterfly</h3>
+            <p class="intro-desc">Bantu kupu-kupu biru terbang anggun melewati pilar kristal bercahaya dan kumpulkan bintang & kado ulang tahun! Raih 15 poin untuk membuka kejutan kue ulang tahun 🎂✨</p>
+            <div class="game-controls-pills">
+              <span class="ctrl-pill">🖱️ Klik Layar</span>
+              <span class="ctrl-pill">⌨️ Spasi</span>
+              <span class="ctrl-pill">📱 Ketuk Layar</span>
+            </div>
+            <button id="btn-start-game-now" class="btn-game-play">
+              <span>Mulai Terbang ✨</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Over Overlay Prompt -->
+        <div id="game-over-banner" class="game-start-banner" style="display: none;">
+          <div class="game-intro-card game-over-card">
+            <div class="intro-butterfly-icon">🦋 💫</div>
+            <h3 class="intro-title font-cursive">Sayap Kupu-Kupu Lelah!</h3>
+            <div class="game-over-stats">
+              <div class="stat-box">
+                <span class="stat-label">SKOR ANDA</span>
+                <span id="game-over-score" class="stat-val">0</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">REKOR TERBAIK</span>
+                <span id="game-over-best" class="stat-val">0</span>
+              </div>
+            </div>
+            <p class="intro-desc" id="game-over-hint">Jangan menyerah! Setiap kepakan membawa sejuta doa & kebahagiaan untukmu ✨</p>
+            <div class="game-over-actions">
+              <button id="btn-restart-game" class="btn-game-play">
+                <span>Terbang Lagi 🔄</span>
+              </button>
+              <button id="btn-open-cake-anyway" class="btn-secondary-cake" style="display: none;">
+                <span>Tiup Lilin Kue 🎂</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Flap Button on mobile -->
+      <div class="flappy-mobile-controls">
+        <button id="btn-mobile-flap" class="btn-flap-mobile" aria-label="Kepakkan Sayap">
+          <span>🦋 KEPAK SAYAP (TAP)</span>
+        </button>
+      </div>
+
+      <!-- Grand Finale: Birthday Cake & Wish Ceremony Modal -->
+      <div id="game-cake-modal" class="game-cake-modal" style="display: none;">
+        <div class="cake-ceremony-card">
+          <div class="ceremony-sparkle-ribbon">🎉 HAPPY BIRTHDAY! 🎉</div>
+          <h3 class="ceremony-headline font-cursive">Make a Wish & Tiup Lilinnya ✨</h3>
+          <p class="ceremony-subtext">Pejamkan mata sejenak, ucapkan doa terindahmu di dalam hati, lalu sentuh atau klik lilin untuk meniupnya 🎂</p>
+
+          <!-- 3D CSS Birthday Cake with Glowing Candle -->
+          <div class="cake-presentation-container" id="cake-container">
+            <div class="cake-pedestal"></div>
+            
+            <div class="cake-body">
+              <!-- Tier 2 (Bottom layer) -->
+              <div class="cake-tier tier-bottom">
+                <div class="tier-frosting"></div>
+                <div class="tier-cream-pearls"></div>
+              </div>
+              
+              <!-- Tier 1 (Top layer) -->
+              <div class="cake-tier tier-top">
+                <div class="tier-frosting"></div>
+                <div class="tier-toppings">🍓 🫐 🍓 🫐 🍓</div>
+              </div>
+
+              <!-- Candle with Flickering Flame & Smoke Effect -->
+              <div class="celebration-candle" id="celebration-candle" role="button" tabindex="0" title="Klik untuk meniup lilin!">
+                <div class="candle-glow-aura"></div>
+                <div class="candle-cylinder"></div>
+                <div class="candle-wick"></div>
+                <div class="candle-flame-element" id="candle-flame-element">
+                  <div class="flame-inner"></div>
+                  <div class="flame-halo"></div>
+                </div>
+                <!-- Smoke puffs when blown -->
+                <div class="candle-smoke-puff" id="candle-smoke-puff"></div>
+              </div>
+            </div>
+          </div>
+
+          <button id="btn-tap-blow-candle" class="btn-blow-action">
+            <span class="blow-icon">🕯️</span>
+            <span class="blow-text">Tiup Lilin Sekarang! ✨</span>
+          </button>
+
+          <!-- Revealed Blessing Letter upon blowing candle -->
+          <div id="cake-revealed-letter" class="cake-revealed-letter" style="display: none;">
+            <div class="revealed-letter-inner">
+              <span class="letter-butterfly-stamp">🦋</span>
+              <h4 class="revealed-recipient font-cursive" id="cake-recipient-name">Selamat Ulang Tahun, Sayang! 💙</h4>
+              <p class="revealed-message">
+                "Semoga di setiap detik pertambahan usiamu, alam semesta selalu membentangkan jalan kebahagiaan, kesehatan yang prima, rezeki yang melimpah, dan ketenangan jiwa. Jadilah pribadi yang selalu menebar kehangatan dan senyum manis seperti indahnya kepakan kupu-kupu samudra." ✨
+              </p>
+              <div class="revealed-letter-footer">
+                <span class="font-cursive love-signature">With infinite love & blessings 💫</span>
+              </div>
+              <div class="ceremony-action-buttons">
+                <button id="btn-game-replay" class="btn-ceremony-replay">Main Lagi 🔄</button>
+                <button class="btn-back-retro btn-ceremony-menu" data-target="screen-menu">Buka Menu Kejutan 🦋</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SCREEN 3B: MOMENT (SECOND 8-POLAROID GALLERY)
+  =============================================== -->
+  <section id="screen-moment" class="app-screen">
+    <div class="screen-nav-header">
+      <button class="btn-back-retro" data-target="screen-menu">
+        BACK ◀
+      </button>
+    </div>
+
+    <div class="journey-stage exact-reference-stage">
+      
+      <div class="polaroid-collage-wrapper" id="collage-wrapper-moment">
+        
+        <div class="ref-sticker sticker-glow-heart-left">🦋</div>
+        
+        <div class="ref-sticker sticker-two-hearts-top">
+          <span class="sub-heart h1">✨</span>
+          <span class="sub-heart h2">💙</span>
+        </div>
+
+        <div class="ref-sticker sticker-wax-seal-center">
+          <div class="wax-seal-heart-inner">❤️</div>
+        </div>
+
+        <div class="ref-sticker sticker-whale-right">
+          <svg viewBox="0 0 130 80" width="125" height="75">
+            <path d="M12 42 C16 16, 68 12, 95 24 C108 14, 118 10, 124 12 C118 24, 112 34, 108 42 C92 64, 48 65, 22 52 C15 48, 12 44, 12 42 Z" fill="#38bdf8" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.35))"/>
+            <path d="M45 42 C45 54, 75 54, 75 42 Z" fill="#ffffff" opacity="0.85"/>
+            <circle cx="34" cy="30" r="3.5" fill="#0f172a"/>
+            <circle cx="35" cy="29" r="1.2" fill="#ffffff"/>
+            <path d="M52 42 C56 50, 64 52, 68 46 Z" fill="#0284c7"/>
+            <path d="M110 26 C116 18, 124 15, 126 16 C122 24, 118 28, 114 30 Z" fill="#0284c7"/>
+          </svg>
+        </div>
+
+        <div class="ref-sticker sticker-saturn-bottom-left">
+          <div class="planet-body gold-planet"></div>
+          <div class="planet-ring gold-ring"></div>
+        </div>
+
+        <div class="ref-sticker sticker-two-hearts-bottom">
+          <span class="sub-heart b1">💎</span>
+          <span class="sub-heart b2">💙</span>
+        </div>
+
+        <div class="ref-sticker sticker-saturn-bottom-right">
+          <div class="planet-body purple-planet"></div>
+          <div class="planet-ring purple-ring"></div>
+        </div>
+
+        <div class="ref-sticker flying-butterfly-1">🦋</div>
+        <div class="ref-sticker flying-butterfly-2">🦋</div>
+
+        <div class="exact-polaroid-gallery" id="polaroid-gallery-moment">
+          <div class="ref-polaroid p-top-1" data-index="8">
+            <div class="ref-photo-inner"><img src="assets/portrait9.jpg" alt="Moment 9"></div>
+          </div>
+          <div class="ref-polaroid p-top-2" data-index="6">
+            <div class="ref-photo-inner"><img src="assets/portrait7.jpg" alt="Moment 7"></div>
+          </div>
+          <div class="ref-polaroid p-top-3" data-index="7">
+            <div class="ref-photo-inner"><img src="assets/portrait8.jpg" alt="Moment 8"></div>
+          </div>
+          <div class="ref-polaroid p-top-4" data-index="5">
+            <div class="ref-photo-inner"><img src="assets/portrait6.jpg" alt="Moment 6"></div>
+          </div>
+          <div class="ref-polaroid p-bot-1" data-index="4">
+            <div class="ref-photo-inner"><img src="assets/portrait5.jpg" alt="Moment 5"></div>
+          </div>
+          <div class="ref-polaroid p-bot-2" data-index="3">
+            <div class="ref-photo-inner"><img src="assets/portrait4.jpg" alt="Moment 4"></div>
+          </div>
+          <div class="ref-polaroid p-bot-3" data-index="2">
+            <div class="ref-photo-inner"><img src="assets/portrait3.jpg" alt="Moment 3"></div>
+          </div>
+          <div class="ref-polaroid p-bot-4" data-index="1">
+            <div class="ref-photo-inner"><img src="assets/portrait2.jpg" alt="Moment 2"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SCREEN 4: PLAYLIST (EXACT SCREENSHOT LAYOUT)
+  =============================================== -->
+  <section id="screen-playlist" class="app-screen">
+    <!-- Green Retro Back Button matching screenshot -->
+    <div class="screen-nav-header">
+      <button class="btn-back-retro" data-target="screen-menu">
+        BACK ◀
+      </button>
+    </div>
+
+    <div class="playlist-stage-exact">
+      
+      <!-- Left Column: Full YouTube Video Player & Gadgets -->
+      <div class="ref-player-section">
+        
+        <!-- Exact YouTube Player Box -->
+        <div class="yt-screen-player" id="yt-player-box">
+          <!-- Top bar with video title & controls -->
+          <div class="yt-header-bar">
+            <div class="yt-left-meta">
+              <span class="yt-logo-badge">🎧</span>
+              <div class="yt-text-wrap">
+                <span class="yt-title-main" id="player-song-title">Cinderella - Mac Miller (Lyrics) ft. Ty Dolla $ign</span>
+                <span class="yt-uploader-sub">Vibe Music</span>
+              </div>
+            </div>
+            <div class="yt-right-icons">
+              <span id="btn-toggle-player-sound" title="Sound">🔊</span>
+              <span>🔲</span>
+              <span>⚙️</span>
+            </div>
+          </div>
+
+          <!-- Video Viewport with Loading Spinner / Butterfly -->
+          <div class="yt-display-screen" id="video-display-area">
+            <div class="yt-spinner-wrap" id="yt-center-spinner">
+              <div class="yt-spinner-circle"></div>
+              <div class="yt-center-butterfly">🦋</div>
+            </div>
+
+            <!-- YouTube Iframe Embed -->
+            <div class="yt-iframe-container" id="yt-embed-box" style="display: none;">
+              <iframe id="yt-player-frame" src="" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <button class="yt-play-trigger-btn" id="btn-player-play-pause" title="Play / Pause Musik">
+              <span id="player-play-icon">▶</span>
+            </button>
+          </div>
+
+          <!-- Bottom Playbar & Controls matching YouTube screenshot -->
+          <div class="yt-bottom-bar">
+            <div class="yt-progress-container" id="yt-progress-bar">
+              <div class="yt-progress-fill" id="track-progress-fill">
+                <div class="yt-scrubber-dot"></div>
+              </div>
+            </div>
+            <div class="yt-controls-row">
+              <div class="yt-left-controls">
+                <span class="yt-time-text" id="time-display">0:00 / 0:00</span>
+                <button class="yt-small-link-btn" id="btn-yt-toggle">🔗 YouTube</button>
+              </div>
+              <div class="yt-right-controls">
+                <span class="yt-expand-icon">⤢</span>
+                <div class="yt-brand-badge">
+                  <span class="yt-red-icon">▶</span>
+                  <span class="yt-brand-text">YouTube</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retro Gadget Row directly beneath Video: Boombox, TV, Neon Notes -->
+        <div class="ref-gadgets-row">
+          
+          <!-- Retro Boombox on Left matching Canva screenshot -->
+          <div class="gadget-box boombox-box">
+            <svg viewBox="0 0 150 95" width="150" height="95">
+              <!-- Top Handle -->
+              <path d="M45 28 L45 10 L105 10 L105 28" fill="none" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+              <!-- Main Boombox Body -->
+              <rect x="8" y="24" width="134" height="66" rx="5" fill="#2d3748" stroke="#1a202c" stroke-width="2.5"/>
+              <rect x="12" y="28" width="126" height="12" fill="#4a5568"/>
+              <!-- Cassette Tape Window -->
+              <rect x="62" y="44" width="26" height="34" rx="2" fill="#1a202c" stroke="#718096" stroke-width="1.5"/>
+              <circle cx="70" cy="58" r="4.5" fill="#a0aec0"/>
+              <circle cx="80" cy="58" r="4.5" fill="#a0aec0"/>
+              <line x1="68" y1="70" x2="82" y2="70" stroke="#00f5d4" stroke-width="2"/>
+              <!-- Left Speaker -->
+              <circle cx="36" cy="58" r="22" fill="#1a202c" stroke="#cbd5e1" stroke-width="2"/>
+              <circle cx="36" cy="58" r="14" fill="#4a5568"/>
+              <circle cx="36" cy="58" r="7" fill="#e2e8f0"/>
+              <!-- Right Speaker -->
+              <circle cx="114" cy="58" r="22" fill="#1a202c" stroke="#cbd5e1" stroke-width="2"/>
+              <circle cx="114" cy="58" r="14" fill="#4a5568"/>
+              <circle cx="114" cy="58" r="7" fill="#e2e8f0"/>
+            </svg>
+          </div>
+
+          <!-- Retro TV in Center matching Canva screenshot -->
+          <div class="gadget-box tv-box">
+            <svg viewBox="0 0 135 95" width="135" height="95">
+              <!-- V Antenna Rabbit Ears -->
+              <line x1="42" y1="6" x2="68" y2="25" stroke="#f1f5f9" stroke-width="3" stroke-linecap="round"/>
+              <line x1="92" y1="6" x2="68" y2="25" stroke="#f1f5f9" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="42" cy="6" r="3.5" fill="#00f5d4"/>
+              <circle cx="92" cy="6" r="3.5" fill="#00f5d4"/>
+              <!-- TV Cabinet -->
+              <rect x="12" y="24" width="112" height="66" rx="6" fill="#334155" stroke="#0f172a" stroke-width="2.5"/>
+              <!-- CRT Curved Screen -->
+              <rect x="20" y="30" width="76" height="52" rx="6" fill="#0f172a"/>
+              <rect x="23" y="33" width="70" height="46" rx="4" fill="#f8fafc" opacity="0.95"/>
+              <path d="M26 36 Q 50 34, 70 36" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8"/>
+              <!-- Knobs & Speaker grille -->
+              <circle cx="110" cy="40" r="5" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <circle cx="110" cy="56" r="5" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <line x1="104" y1="70" x2="116" y2="70" stroke="#64748b" stroke-width="2.5"/>
+              <line x1="104" y1="76" x2="116" y2="76" stroke="#64748b" stroke-width="2.5"/>
+            </svg>
+          </div>
+
+          <!-- Glowing Neon Music Notes Wave on Right -->
+          <div class="neon-notes-wave-box">
+            <svg viewBox="0 0 220 95" width="220" height="95">
+              <!-- Flowing staff curves -->
+              <path d="M10 70 Q 55 15, 110 50 T 210 30" fill="none" stroke="#00f5d4" stroke-width="3" opacity="0.95" filter="drop-shadow(0 0 8px #00f5d4)"/>
+              <path d="M15 78 Q 60 23, 115 58 T 215 38" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.85" filter="drop-shadow(0 0 6px #38bdf8)"/>
+              <!-- Glowing Musical Notes -->
+              <text x="35" y="48" fill="#ffffff" font-size="28" font-weight="bold" filter="drop-shadow(0 0 10px #00f5d4)">♪</text>
+              <text x="90" y="34" fill="#00f5d4" font-size="34" font-weight="bold" filter="drop-shadow(0 0 12px #00f5d4)">♫</text>
+              <text x="155" y="45" fill="#67e8f9" font-size="30" font-weight="bold" filter="drop-shadow(0 0 10px #38bdf8)">♬</text>
+            </svg>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: 3 Ornate Golden Frames exactly matching screenshot layout -->
+      <div class="ref-frames-section">
+        
+        <!-- Left Sub-column with 2 Stacked Square Gold Frames -->
+        <div class="frames-left-stack">
+          <!-- Frame 1: Top Left -->
+          <div class="gold-photo-frame frame-left-top" title="Frame Memory 1">
+            <div class="frame-outer-bezel">
+              <div class="frame-inner-mat">
+                <img src="assets/portrait7.jpg" alt="Golden Frame Photo 1" id="img-playlist-frame-1">
+              </div>
+            </div>
+            <span class="gold-frame-butterfly">🦋</span>
+          </div>
+
+          <!-- Frame 2: Bottom Left -->
+          <div class="gold-photo-frame frame-left-bot" title="Frame Memory 2">
+            <div class="frame-outer-bezel">
+              <div class="frame-inner-mat">
+                <img src="assets/portrait8.jpg" alt="Golden Frame Photo 2" id="img-playlist-frame-2">
+              </div>
+            </div>
+            <span class="gold-frame-butterfly">🦋</span>
+          </div>
+        </div>
+
+        <!-- Right Sub-column with Larger Ornate Baroque Frame -->
+        <div class="frames-right-single">
+          <!-- Frame 3: Larger Ornate Frame centered on right -->
+          <div class="gold-photo-frame frame-right-baroque" title="Frame Memory 3">
+            <div class="frame-outer-bezel ornate-carved">
+              <div class="frame-inner-mat">
+                <img src="assets/portrait9.jpg" alt="Golden Frame Photo 3" id="img-playlist-frame-3">
+              </div>
+            </div>
+            <span class="gold-frame-butterfly right-b">🦋</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SCREEN 5: GIFT (EXACT SCREENSHOT REPLICATION)
+  =============================================== -->
+  <section id="screen-gift" class="app-screen">
+    <!-- Green Retro Back Button matching screenshot -->
+    <div class="screen-nav-header">
+      <button class="btn-back-retro" data-target="screen-menu">
+        BACK ◀
+      </button>
+    </div>
+
+    <div class="gift-composition-stage">
+      
+      <!-- Top Title: Justicia Chantika D A in white cursive calligraphy -->
+      <div class="gift-name-wrapper">
+        <h2 class="gift-calligraphy-name font-cursive" id="gift-person-name">Justicia Chantika D A</h2>
+      </div>
+
+      <!-- Main Stage containing Letter (with Roses, Vinyl, Camera) and Golden Frame -->
+      <div class="gift-main-layout">
+        
+        <!-- Left Section: White Letter with Climbing Roses, Vinyl tucked beneath -->
+        <div class="gift-letter-container">
+          
+          <!-- Climbing Red Roses Bouquet on Left -->
+          <div class="gift-roses-branch-decor">
+            <img src="assets/rose_branch.png?v=10" alt="Red Roses Branch">
+          </div>
+
+          <!-- White Letter Card -->
+          <div class="gift-white-paper-card">
+            <img src="assets/crumpled_paper.png?v=10" class="gift-paper-bg-img" alt="Parchment Paper">
+            <p class="gift-letter-text" id="gift-letter-body">
+              "Selamat ulang tahun, Sayang. Di hari spesialmu ini, aku cuma mau bilang terima kasih karena sudah lahir ke dunia dan membawa begitu banyak kebahagiaan ke hidupku. Kamu adalah hal terindah yang pernah hadir dalam hidupku, dan aku berharap bisa terus merayakan hari-hari bahagiamu di tahun-tahun berikutnya. I love you so much, kini dan nanti."
+            </p>
+          </div>
+
+          <!-- Vinyl Record Player Tucked Underneath matching screenshot -->
+          <div class="gift-vinyl-player-wrap" id="btn-mini-vinyl-play" title="Play Musik">
+            <img src="assets/vinyl_disc.png?v=10" alt="Vinyl Record Player" class="gift-vinyl-disc-img">
+          </div>
+
+        </div>
+
+        <!-- Vintage Rangefinder Camera bridging letter and frame corner -->
+        <div class="gift-camera-wrap" id="camera-click-sound" title="Click for flash! 📸">
+          <img src="assets/camera_clean.png?v=10" alt="Vintage 35mm Camera" class="camera-img">
+          <span class="camera-tooltip">Click for flash! 📸</span>
+        </div>
+
+        <!-- Right Section: Authentic Ornate Gilded Baroque Gold Frame with Top-Right Rose -->
+        <div class="gift-frame-container" id="btn-unwrap-gift" title="Ketuk foto untuk buka hadiah kejutan! 🎁✨">
+          <div class="gift-baroque-photo-card">
+            <!-- Photo inside the frame -->
+            <img src="assets/portrait_selfie.jpg?v=10" alt="Mirror Selfie Portrait" class="frame-portrait-img" id="img-gift-portrait">
+            <!-- Ornate baroque gold frame overlaid on top -->
+            <img src="assets/ornate_gold_frame.png?v=10" alt="Ornate Gold Frame" class="frame-gilded-overlay">
+            <!-- Top Right Blooming Rose on frame corner -->
+            <img src="assets/rose_corner.png?v=10" alt="Red Rose Corner" class="frame-rose-corner-decor">
+            <div class="frame-gift-hint">
+              <span>Tap for Surprise 🎁✨</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       MODAL: LIGHTBOX ENLARGED PHOTO
+  =============================================== -->
+  <div id="lightbox-modal" class="modal-backdrop">
+    <div class="lightbox-card">
+      <button class="btn-close-modal" id="btn-close-lightbox">✕</button>
+      <div class="lightbox-img-wrapper">
+        <img src="" alt="Enlarged Memory" id="lightbox-img">
+      </div>
+      <div class="lightbox-details">
+        <h4 id="lightbox-title" class="font-cursive">Our Memory</h4>
+        <p id="lightbox-caption">Moment yang sangat indah bersamamu.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       MODAL: UNWRAPPED GIFT REVEAL
+  =============================================== -->
+  <div id="gift-reveal-modal" class="modal-backdrop">
+    <div class="gift-voucher-card">
+      <button class="btn-close-modal" id="btn-close-voucher">✕</button>
+      <div class="voucher-confetti-canvas-wrapper">
+        <canvas id="confetti-canvas"></canvas>
+      </div>
+      <div class="voucher-content">
+        <span class="voucher-badge">SPECIAL BIRTHDAY TICKET 🦋✨</span>
+        <h3 class="voucher-title font-cursive">Kupon Cinta Tanpa Batas</h3>
+        <p class="voucher-desc">
+          Kupon ini berlaku seumur hidup! Bisa ditukar kapan pun untuk:
+        </p>
+        <ul class="voucher-list">
+          <li>🍫 Cokelat / Makanan favorit kapan pun kamu mau</li>
+          <li>🤗 Pelukan hangat & didengerin curhat sampai puas</li>
+          <li>🌊 Jalan-jalan berdua ke pantai atau tempat impianmu</li>
+          <li>🦋 Permintaan apa pun yang kamu mau, dikabulkan!</li>
+        </ul>
+        <div class="voucher-footer">
+          <p class="font-cursive voucher-sign">Forever Yours 💙</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Load Config & Main Script -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
